@@ -1,0 +1,17 @@
+<form (ngSubmit)="submit()" #todoForm="ngForm">
+
+  <div>
+    <label>Titre</label>
+    <input type="text" name="title" [(ngModel)]="todo.title" #title="ngModel">
+    <div *ngIf="title.dirty && title.hasError('required')">Title is mandatory</div>
+  </div>
+
+  <div>
+    <label>Contenu</label>
+    <input type="text" name="content" [(ngModel)]="todo.content">
+  </div>
+
+  <button [disabled]="todoForm.invalid" type="submit">Register</button>
+  {{todo | json}}
+</form>
+

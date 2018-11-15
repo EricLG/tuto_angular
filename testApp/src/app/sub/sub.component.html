@@ -1,0 +1,36 @@
+<p [textContent]="data">{{title?.content}}</p>
+
+<button (click)="clickHandler()">click me</button>
+
+<div [class]="colorClass">ma div</div>
+
+<input type="text" #name>
+
+<button (click)="validInput(name)">click me</button>
+
+<div *ngIf="data">You have some data</div>
+
+<div>
+  <input placeholder="Filtre" type="text" #filterVar>
+  <button (click)='addFilter(filterVar)'>Add Filter</button>
+</div>
+
+<div *ngFor="let todo of todoService.getTodos() | todofilter:myFilter" [ngClass]="{'awesomeDiv': todo.isAwesomeDiv(), 'awesomeDiv2': !todo.isAwesomeDiv()}">
+  <app-todo (todoSelect)="todoSelected($event)" [todo]="todo"></app-todo>
+</div>
+
+<div>{{todos.length}}</div>
+
+<input type="text" #title>
+<input type="text" #content>
+<button (click)='addTodo(title, content)'>Add todo</button>
+
+<div *ngFor="let todo of todoService.getTodos()" [ngClass]="{'awesomeDiv': todo.isAwesomeDiv(), 'awesomeDiv2': !todo.isAwesomeDiv()}">
+    <app-todo (todoSelect)="todoSelected($event)" [todo]="todo" appTest></app-todo>
+</div>
+
+<div [ngSwitch]="todos.length">
+  <div *ngSwitchCase="0">Tou are good to go</div>
+  <div *ngSwitchCase="3">You have 3 thing</div>
+  <div *ngSwitchDefault>You have lot of work</div>
+</div>
