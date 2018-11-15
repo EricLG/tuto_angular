@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { debounceTime} from 'rxjs/operators/debounceTime';
+import { distinctUntilChanged} from 'rxjs/operators/distinctUntilChanged';
+
 
 @Component({
   selector: 'app-user-form',
@@ -25,6 +28,11 @@ export class UserFormComponent implements OnInit {
         username: this.usernameCtrl,
         password: this.passwordCtrl
       })
+
+      this.passwordCtrl.valueChanges.pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+      ).subscribe(newValue => console.log(newValue));
   }
 
   public register() {
