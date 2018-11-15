@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SubComponent } from './sub/sub.component';
@@ -12,6 +12,7 @@ import { TodoComponent } from './todo/todo.component';
 import { TestDirective } from './directives/test.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,13 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
     TodoComponent,
     TestDirective,
     HighlightDirective,
-    TodoFormComponent
+    TodoFormComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
