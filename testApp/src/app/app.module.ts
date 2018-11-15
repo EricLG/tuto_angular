@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SubComponent } from './sub/sub.component';
@@ -14,6 +15,15 @@ import { TestDirective } from './directives/test.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { ErrorComponent } from './error/error.component';
+import { Sub2Component } from './sub2/sub2.component';
+
+export const ROUTES: Routes = [
+  { path: '', redirectTo: 'sub1', pathMatch: 'full' },
+  { path: 'sub1', component: SubComponent },
+  { path: 'sub2', component: Sub2Component },
+  { path: '**', component: ErrorComponent },
+]
 
 @NgModule({
   declarations: [
@@ -25,13 +35,16 @@ import { UserFormComponent } from './user-form/user-form.component';
     TestDirective,
     HighlightDirective,
     TodoFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    ErrorComponent,
+    Sub2Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     {
