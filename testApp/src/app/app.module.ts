@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes} from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 import { SubComponent } from './sub/sub.component';
 import { TodoService } from './services/todo.service';
@@ -17,11 +18,12 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ErrorComponent } from './error/error.component';
 import { Sub2Component } from './sub2/sub2.component';
+import { LogguedInGuard } from './guards/loggued-in.guard';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'sub1', pathMatch: 'full' },
   { path: 'sub1', component: SubComponent },
-  { path: 'sub2', component: Sub2Component },
+  { path: 'sub2', component: Sub2Component, canActivate: [LogguedInGuard] },
   { path: '**', component: ErrorComponent },
 ]
 
@@ -50,7 +52,8 @@ export const ROUTES: Routes = [
     {
       provide: GenericTodoService,
       useClass: TodoService
-    }
+    },
+    LogguedInGuard
   ],
   bootstrap: [AppComponent]
 })
