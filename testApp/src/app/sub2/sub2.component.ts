@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
   selector: 'app-sub2',
@@ -7,9 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Sub2Component implements OnInit {
 
-  constructor() { }
+  public users: Array<User>;
+  public users2: Observable<User[]>;
+  public filteredUser: User;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+
+    this.userService.getUsers().subscribe((data) => {
+      this.users = data;
+    })
+    this.users2 = this.userService.getUsers();
+
+    this.userService
+    .getUsers()
+    .mergeMap(res => res)
+    .filter(elem => elem.username === 'Bret')
+    .subscribe(data => {
+      this.filteredUser = data;
+      console.log(data)
+    });
+
   }
 
 }

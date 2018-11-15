@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,5 +22,27 @@ export class AppComponent {
       }, (error) => {
         console.log(error);
       });
+  }
+
+  public ngOnInit(): void {
+    this.createObservable();
+  }
+
+  public createObservable() {
+    let a = 0;
+    const o = new Observable(sub => {
+      setInterval(() => {
+        a++;
+        sub.next(a);
+      }, 1000)
+    });
+
+    o.subscribe(data => {
+      console.log(data);
+    });
+
+    o.subscribe(data => {
+      console.log(data);
+    });
   }
 }

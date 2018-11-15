@@ -1,3 +1,13 @@
-<p>
-  sub2 works!
-</p>
+<div>
+  <ul>
+    <li *ngFor="let user of users">{{user.username}}</li>
+  </ul>
+</div>
+<hr>
+<div>
+  <ul>
+    <li *ngFor="let user of users2 | async">{{user.username}}</li>
+  </ul>
+</div>
+<hr>
+<div>{{ filteredUser | json }}</div>
