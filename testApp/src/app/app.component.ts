@@ -37,12 +37,9 @@ export class AppComponent {
       }, 1000)
     });
 
-    o.subscribe(data => {
-      console.log(data);
-    });
+    // o.subscribe(data => {
+    //   console.log(data);
+    // });
 
-    o.subscribe(data => {
-      console.log(data);
-    });
   }
 }

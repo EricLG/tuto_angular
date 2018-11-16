@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sub2',
@@ -16,7 +17,9 @@ export class Sub2Component implements OnInit {
   public users2: Observable<User[]>;
   public filteredUser: User;
 
-  constructor(private userService: UserService) { }
+  public usersR: User[];
+
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -34,6 +37,10 @@ export class Sub2Component implements OnInit {
       console.log(data)
     });
 
+    // Resolver
+    this.route.data.subscribe(data => {
+      this.usersR = data['msg'];
+    } );
   }
 
 }

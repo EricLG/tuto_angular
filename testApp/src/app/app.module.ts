@@ -19,11 +19,20 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { ErrorComponent } from './error/error.component';
 import { Sub2Component } from './sub2/sub2.component';
 import { LogguedInGuard } from './guards/loggued-in.guard';
+import { MsgResolverService } from './services/msg-resolver.service';
+import { MsgComponent } from './msg/msg.component';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'sub1', pathMatch: 'full' },
-  { path: 'sub1', component: SubComponent },
-  { path: 'sub2', component: Sub2Component, canActivate: [LogguedInGuard] },
+  { 
+    path: 'sub1',
+    canActivate: [LogguedInGuard], 
+    component: SubComponent },
+  { 
+    path: 'sub2', 
+    component: Sub2Component, 
+    resolve: {msg: MsgResolverService}
+  },
   { path: '**', component: ErrorComponent },
 ]
 
@@ -39,7 +48,8 @@ export const ROUTES: Routes = [
     TodoFormComponent,
     UserFormComponent,
     ErrorComponent,
-    Sub2Component
+    Sub2Component,
+    MsgComponent
   ],
   imports: [
     BrowserModule,

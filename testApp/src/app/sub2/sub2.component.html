@@ -11,3 +11,12 @@
 </div>
 <hr>
 <div>{{ filteredUser | json }}</div>
+
+
+<hr>
+<h2>Resolver</h2>
+<div>
+  <ul>
+    <li *ngFor="let u of usersR">{{u.username}}</li>
+  </ul>
+</div>
