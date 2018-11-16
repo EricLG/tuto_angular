@@ -1,3 +1,15 @@
-<p>
-  login works!
-</p>
+<h2>Login</h2>
+
+<div>
+  <form (ngSubmit)="submit(userForm.value)" #userForm="ngForm">
+
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required>
+      <div *ngIf="name.dirty && name.hasError('required')">Name is mandatory</div>
+    </div>
+
+    <button [disabled]="userForm.invalid" type="submit">Login</button>
+  </form>
+
+</div>

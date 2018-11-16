@@ -1,3 +1,21 @@
-<p>
-  messages works!
-</p>
+<h2>Liste des messages</h2>
+<div><p>Vous êtes authentifié en tant que : {{ authUser.name}}</p></div>
+<ul>
+  <li *ngFor="let msg of messages"><app-message [message]="msg"></app-message></li>
+</ul>
+
+<h2>Ajouter un message</h2>
+
+<div>
+  <form (ngSubmit)="submit(messageForm.value)" #messageForm="ngForm">
+    <div>
+      <label>Contenu</label>
+      <input type="text" name="content" [(ngModel)]="newMsg.content" #content="ngModel" required>
+      <div *ngIf="content.dirty && content.hasError('required')">Content is mandatory</div>
+    </div>
+
+
+    <button [disabled]="messageForm.invalid" type="submit">Poster</button>
+  </form>
+
+</div>
